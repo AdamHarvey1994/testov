@@ -5,8 +5,6 @@
   <title></title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<div id="error">
-</div>
 <div id="main">
   <body><center><header><b><h2>Создание шапок для Youtube<h2></b></header>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqY3uFqomUhXUGJDTmOFzFpit1kSUd958eLipO5qHnDA&s" alt="">
@@ -22,47 +20,48 @@
 <form id="form">
   <center>
     <h2>ОФОРМЛЕНИЕ ЗАКАЗА</h2>
-  <input type="text" placeholder="Имя" id="user_name">
-  <input type="text" placeholder="Email" id="user_email">
-  <input type="text" placeholder="Связь(соц.сеть)" id="user_phone">
-  <button id="order"><h4>Оформить</h4></button></center>
+    <input type="text" placeholder="Имя" id="user_name">
+    <input type="text" placeholder="Email" id="user_email">
+    <input type="text" placeholder="Связь(соц.сеть)" id="user_phone">
+    <div id="error"></div>
+    <button id="order"><h4>Оформить</h4></button></center>
 </form>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
-  let tg = window.Telegram.WebApp;
-  let buy = document.getElementById("buy");
-  let order = document.getElementById("order");
-  tg.expand()
-  buy.addEventListener("click", () => {
-    document.getElementById("main").style.display = "none";
-    document.getElementById("form").style.display = "block";
-    document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;});
+    let tg = window.Telegram.WebApp;
+    let buy = document.getElementById("buy");
+    let order = document.getElementById("order");
+    tg.expand()
+    buy.addEventListener("click", () => {
+      document.getElementById("main").style.display = "none";
+      document.getElementById("form").style.display = "block";
+      document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;});
 
-  order.addEventListener("click", () => {
-    document.getElementById("error").innerText = "";
-    let name = document.getElementById("user_name");
-    let email = document.getElementById("user_email");
-    let phone = document.getElementById("user_phone");
-    if(name.length < 5){
-      document.getElementById("error").innerText = "Ошибка в имени";
-      return
-    }
-    if(email.length < 5){
-      document.getElementById("error").innerText = "Ошибка в адрессе электронной почте";
-      return
-    }
-    if(phone.length < 5) {
-      document.getElementById("error").innerText = "Ошибка в поле 'Средство связи'";
-      return
-    }
-    let data = {
-      name: name,
-      email: email,
-      phone: phone,
-    }
-    tg.sendData(JSON.stringify(data));
-    tg.close();
+    order.addEventListener("click", () => {
+      document.getElementById("error").innerText = '';
+      let name = document.getElementById("user_name");
+      let email = document.getElementById("user_email");
+      let phone = document.getElementById("user_phone");
+      if(name.length < 5){
+        document.getElementById("error").innerText = "Ошибка в имени";
+        return
+      }
+      if(email.length < 5){
+        document.getElementById("error").innerText = "Ошибка в адрессе электронной почте";
+        return
+      }
+      if(phone.length < 5) {
+        document.getElementById("error").innerText = "Ошибка в поле 'Средство связи'";
+        return
+      }
+      let data = {
+        name: name,
+        email: email,
+        phone: phone
+      }
+      tg.sendData(JSON.stringify(data));
+      tg.close();
   });
 </script>
 </html>
