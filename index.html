@@ -5,6 +5,8 @@
   <title></title>
   <link rel="stylesheet" href="style.css" />
 </head>
+<div id="error">
+</div>
 <div id="main">
   <body><center><header><b><h2>Создание шапок для Youtube<h2></b></header>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqY3uFqomUhXUGJDTmOFzFpit1kSUd958eLipO5qHnDA&s" alt="">
@@ -36,9 +38,30 @@
     document.getElementById("main").style.display = "none";
     document.getElementById("form").style.display = "block";
     document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;});
-  order.addEventListener("click", () => {
-    tg.close()
-  });
 
+  order.addEventListener("click", () => {
+    let name = document.getElementById("user_name");
+    let email = document.getElementById("user_email");
+    let phone = document.getElementById("user_phone");
+    if(name.length < 5){
+      document.getElementById("error").innerText = "Ошибка в имени";
+      return
+    }
+    if(email.length < 5){
+      document.getElementById("error").innerText = "Ошибка в адрессе электронной почте";
+      return
+    }
+    if(phone.length < 5) {
+      document.getElementById("error").innerText = "Ошибка в поле 'Средство связи'";
+      return
+    }
+    let data = {
+      name: name,
+      email: email,
+      phone: phone,
+    }
+    tg.sendData(JSON.stringify(data));
+    tg.close();
+  });
 </script>
 </html>
