@@ -1,0 +1,22 @@
+    body {
+    background-color: #e4b9b9;
+    }
+    h1 {
+        color:black;
+    }
+    h2{
+        font-size: 1.5rem;
+        background-color: #ebccd1;
+    }
+    h3 {
+        color: black;
+        background-color: #ebccd1;
+    }
+    h4 {
+        width: 100px;
+        height: 15px;
+        font-size: 1.2rem;
+    }
+    form {
+        display: none
+    }
