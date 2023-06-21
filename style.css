@@ -17,6 +17,16 @@
         height: 15px;
         font-size: 1.2rem;
     }
-    form {
+    input{
+        width: 90%;
+        margin: 10px 5%;
+        padding: 15px 10px;
+        font-size: 14px;
+        border: 2px solid silver;
+        border-radius: 5px;
+        outline: none;
+
+    }
+    #form {
         display: none
     }
